@@ -1,6 +1,6 @@
 class Product < ActiveRecord::Base
-
-  has_one :user , dependent: :destroy
+  belongs_to :user
+  
 
   validates :title , length: { in: 5..30  }
   validates :description, length: { maximum: 300 }
