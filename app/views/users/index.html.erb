@@ -1,0 +1,23 @@
+<h1>index user</h1>
+
+<%= link_to 'New', new_user_path%>
+<%= link_to 'Back', root_path %>
+
+
+<h1>Listing users</h1>
+
+<table>
+  <tr>
+    <th>username</th>
+  </tr>
+
+  <% @users.each do |u| %>
+    <tr>
+      <td><%= u.username %></td>
+      <td><%= link_to 'Show', user_path(u.id) %></td>
+      <td><%= link_to 'Edit', edit_user_path(u.id) %> </td>
+      <td><%= link_to 'Delete', user_path(u.id),method: :delete,
+              data: { confirm: 'Are you sure?' }%> </td>
+    </tr>
+  <% end %>
+</table>

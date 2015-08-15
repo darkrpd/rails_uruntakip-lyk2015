@@ -1,0 +1,25 @@
+<h1>show user</h1>
+
+<%= link_to 'Back', users_path %>
+
+
+<h1>Listing users</h1>
+
+<table>
+  <tr>
+    <th>username</th>
+    <th>email</th>
+    <th>age  </th>
+    <th>city  </th>
+  </tr>
+
+
+    <tr>
+      <td><%= @user.username %></td>
+      <td><%= @user.email %></td>
+      <td><%= @user.age %></td>
+      <td><%= @user.city %></td>
+      <td><%= link_to 'Delete', user_path(@user.id),method: :delete,
+              data: { confirm: 'Are you sure?' }%> </td>
+    </tr>
+</table>
