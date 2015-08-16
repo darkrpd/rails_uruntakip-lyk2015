@@ -8,7 +8,6 @@ class UsersController < ApplicationController
           # user_params= params.require(:user).permit(:username, :email,:age,:city)
            @user = User.new
            @user.products.build
-           @user.products.build
 
         end
 
@@ -35,13 +34,14 @@ class UsersController < ApplicationController
 
         def edit
           @user = User.find(params[:id])
+
         end
 
 
         def update
           @user = User.find(params[:id])
-          user_params= params.require(:user).permit(:username,:email,:age,:city)
-
+          user_params= params.require(:user).permit(:username, :email,:age,:city,
+          products_attributes: [:id,:title, :description, :price,:_destroy])
           if @user.update(user_params)
           redirect_to @user
           else
