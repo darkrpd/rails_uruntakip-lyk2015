@@ -1,7 +1,7 @@
 class User < ActiveRecord::Base
   ##has_one :product , foreign_key: 'product_id', dependent: :destroy
   has_many :products , dependent: :destroy
-  accepts_nested_attributes_for :products
+  accepts_nested_attributes_for :products ,  allow_destroy: true
 
   validates :username ,presence: true, length: { in: 6..20,message: "username"  }
   validates :email, format: { with: /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/ ,
