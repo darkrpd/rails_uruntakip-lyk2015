@@ -1,6 +1,21 @@
 <h1>new user</h1>
 
-<%= form_for :user, url: users_path do |f| %>
+<%= form_for @user do |f| %>
+
+  <% if @user.errors.any? %>
+    <div id="error_explanation">
+      <h2>
+        <%= pluralize(@user.errors.count, "error") %> prohibited
+        this article from being saved:
+      </h2>
+      <ul>
+        <% @user.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+  
   <p>
     <%= f.label :username %><br>
     <%= f.text_field :username %>
@@ -20,13 +35,8 @@
     <%= f.text_field :city %>
   </p>
 
-
-
-  <%= form_for @nested do |f| %>
-    Addresses:
-    <ul>
       <%= f.fields_for :products do |products_form| %>
-        <li>
+
           <%= products_form.label :title %>
           <%= products_form.text_field :title %>
 
@@ -36,13 +46,11 @@
           <%= products_form.label :price %>
           <%= products_form.text_field :price %>
 
-            <p>
-              <%= products_form.submit %>
-            </p>
-        </li>
+
       <% end %>
-    </ul>
-  <% end %>
+      <p>
+        <%= f.submit %>
+      </p>
 
 <!--
   <p>

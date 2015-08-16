@@ -6,7 +6,9 @@ class UsersController < ApplicationController
 
         def new
           # user_params= params.require(:user).permit(:username, :email,:age,:city)
-           @nested = User.new
+           @user = User.new
+           @user.products.build
+           @user.products.build
 
         end
 
@@ -16,11 +18,14 @@ class UsersController < ApplicationController
 
             user_params= params.require(:user).permit(:username, :email,:age,:city,
             products_attributes: [:title, :description, :price])
-            @nested = User.new(user_params)
-            @nested.save
+            @user = User.new(user_params)
+            if @user.save
+              redirect_to user_path(@user)
+            else
+              render 'new'
+            end
           #  @user = User.new(user_params)
           #  @user.save
-       redirect_to users_path
 
         end
 
