@@ -22,7 +22,32 @@
 
 
 
+  <%= form_for @nested do |f| %>
+    Addresses:
+    <ul>
+      <%= f.fields_for :products do |products_form| %>
+        <li>
+          <%= products_form.label :title %>
+          <%= products_form.text_field :title %>
+
+          <%= products_form.label :description %>
+          <%= products_form.text_field :description %>
+
+          <%= products_form.label :price %>
+          <%= products_form.text_field :price %>
+
+            <p>
+              <%= products_form.submit %>
+            </p>
+        </li>
+      <% end %>
+    </ul>
+  <% end %>
+
+<!--
   <p>
     <%= f.submit %>
   </p>
+ -->
+
 <% end %>
